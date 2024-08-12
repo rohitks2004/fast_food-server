@@ -37,6 +37,7 @@ exports.showOrder = async (req,res)=>{
     }
     
     res.status(200).json(detailedOrder)
+
     }catch(e){
        res.status(500).json(e)
     }
