@@ -9,8 +9,8 @@ const orderRoutes = require('./routes/orderRoute');
 app.use(express.json());
 
 mongoose.connect(
-    // 'mongodb+srv://ksrohit25:ZqueG2A4I3eYg6HU@cluster0.rq5ngav.mongodb.net/food-delivery'
-    'mongodb://localhost:27017/food-delivery'
+    'mongodb+srv://ksrohit25:ZqueG2A4I3eYg6HU@cluster0.rq5ngav.mongodb.net/food-delivery'
+    // 'mongodb://localhost:27017/food-delivery'
 ).then(()=>console.log("MongoDB connected")
 ).catch(()=>console.log("MongoDB connection Failed"))
 
