@@ -17,7 +17,7 @@ exports.loginUser = async (req,res)=>{
         }
 
         const token = jwt.sign({user_id:user._id},'secret_token',{expiresIn:'24h'});
-        res.status(200).json(token);
+        res.status(200).json({userType:user.userType, token});
     }catch(e){
         console.log(e)
     }
@@ -29,12 +29,14 @@ exports.createUser = async (req,res)=>{
         const user = new User({
             name:req.body.name,
             email:req.body.email,
-            password:req.body.password
+            password:req.body.password,
+            userType:req.body.userType
         })
         await user.save()
         res.status(200).json('user created successfully');
     }catch(e){
-        console.log(e)
+        console.log(e);
+        res.status(400).json(e);
     }
 }
 

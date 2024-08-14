@@ -7,6 +7,12 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:[true,"name is required"]
     },
+    userType:{
+        type:String,
+        enum:['admin','customer','restaurant'],
+        required:[true,"user type is required"]
+    }
+    ,
     email: {
         type:String,
         required:[true,"email is required"]
