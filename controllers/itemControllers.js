@@ -11,6 +11,15 @@ exports.getItems = async(req,res)=>{
 }
 
 exports.createItem = async(req,res)=>{
+    
+    const {user_id:userId , userType} = req.user;
+
+    if(userType =='customer'){
+        res.status(500).json({
+            message: 'You are not authorized to create an item'
+        })
+    } 
+
     const {name,description,price,image,category} = req.body;
 
     const item = new Item({
@@ -29,6 +38,14 @@ exports.createItem = async(req,res)=>{
     }
 }
 exports.updateItem = async (req,res)=>{
+    const {user_id:userId , userType} = req.user;
+
+    if(userType =='customer'){
+        res.status(500).json({
+            message: 'You are not authorized to update an item'
+        })
+    } 
+
     const id = req.params.id;
     try{ 
         const item = await Item.find({id})
@@ -49,6 +66,14 @@ exports.updateItem = async (req,res)=>{
     }
 }
 exports.deleteItem = async(req,res)=>{
+    const {user_id:userId , userType} = req.user;
+
+    if(userType =='customer'){
+        res.status(500).json({
+            message: 'You are not authorized to delete an item'
+        })
+    } 
+
     try{
         const id = req.body.id;
         await Item.deleteOne({id})
