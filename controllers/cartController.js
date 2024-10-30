@@ -16,7 +16,7 @@ exports.showCart =async(req,res)=>{
                 subtotal +=  itemDetails.price * item.quantity
                 return {
                     id:itemDetails.id,
-                    title: itemDetails.title,
+                    name: itemDetails.name,
                     description:itemDetails.description,
                     price: itemDetails.price,
                     category:itemDetails.category,

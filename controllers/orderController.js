@@ -14,10 +14,10 @@ exports.showOrder = async (req,res)=>{
 
         order.items.map(async (item)=>{
             const itemDetails = await Items.findOne({id:item.itemId})
-
+            console.log(itemDetails);
               return{
                 id:itemDetails.id,
-                title: itemDetails.title,
+                name: itemDetails.name,
                 description:itemDetails.description,
                 price: itemDetails.price,
                 image:itemDetails.image,
@@ -98,7 +98,7 @@ exports.createOrder = async(req,res)=>{
 //         subtotal += productDetails.price * product.quantity;
 //         return {
 //             id:productDetails.id,
-//             title:productDetails.title,
+//             name:productDetails.name,
 //             description:productDetails.description,
 //             price:productDetails.price,
 //             image:productDetails.image,
@@ -122,7 +122,7 @@ exports.createOrder = async(req,res)=>{
 //             subtotal += productDetails.price * product.quantity;
 //             return {
 //                 id:productDetails.id,
-//                 title:productDetails.title,
+//                 name:productDetails.name,
 //                 description:productDetails.description,
 //                 price:productDetails.price,
 //                 image:productDetails.image,

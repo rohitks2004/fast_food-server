@@ -49,10 +49,10 @@ exports.updateItem = async (req,res)=>{
     const id = req.params.id;
     try{ 
         const item = await Item.find({id})
-        const {title,description,price,category,image} = item
+        const {name,description,price,category,image} = item
         await Item.updateOne({id},{
             $set:{
-                title:(req.body.title || title ),
+                name:(req.body.name || name ),
                 description:(req.body.description || description),
                 price:(req.body.price || price),
                 category:(req.body.category || category),
