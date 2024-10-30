@@ -34,6 +34,7 @@ exports.showOrder = async (req,res)=>{
         orderType : order.orderType,
         orderTime: order.orderTime,
         availableTime: order.availableTime,
+        status:order.status
     }
     
     res.status(200).json(detailedOrder)
@@ -72,7 +73,7 @@ exports.createOrder = async(req,res)=>{
             items,
             phone,
             orderType,
-            availableTime
+            availableTime,
         })  
         await order.save()
         res.status(200).json("order created");
@@ -81,7 +82,21 @@ exports.createOrder = async(req,res)=>{
        res.status(500).json(e)
     }
 }
+exports.updateStatus = async(req,res)=>{
+    const userId = req.user.user_id;
+    const user =await User.findOne({_id:userId});
+    const order = await Order.findOne({email:user.email});
 
+    order.status = req.body.status;
+    console.log(order);
+    try{
+        await order.save();
+        res.status(200).json(order);
+    }catch(e){
+        res.status(500).json(e);
+    }
+    // enum: ['pending', 'in_progress', 'completed'],
+}
 
 
 //     if(!userCart && !userCart.products.length){

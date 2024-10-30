@@ -68,6 +68,7 @@ exports.addToCart = async(req,res)=>{
                 quantity
             })
         }
+        userCart.orderType = orderType;
         try{
             await userCart.save();
             res.status(200).json("item added to created");

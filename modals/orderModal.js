@@ -53,6 +53,12 @@ const orderSchema = new mongoose.Schema({
         type: String,
         enum: ['pickup', 'delivery'],
         required: [true, "Order type is required"]
+    },
+    status:{
+        type:String,
+        enum: ['pending', 'in_progress', 'completed'],
+        default: 'pending',
+        required: [true, "Status is required"]
     }
 });
 
